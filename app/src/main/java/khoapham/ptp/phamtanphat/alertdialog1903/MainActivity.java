@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     Button btnAlertDialog;
+    static int position = -1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,27 +25,21 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Hộp thoại thông báo");
-                builder.setMessage("Bạn muốn thoát hay không");
                 builder.setCancelable(false);
-
                 builder.setIcon(android.R.drawable.star_on);
+                //SingleChoice
+                final String[] mangmonhoc = {"Toan" ,"Ly" ,"Hoa","Anh van"};
+                builder.setSingleChoiceItems(mangmonhoc, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int position) {
+                        MainActivity.position = position;
+
+                    }
+                });
                 builder.setPositiveButton("Co", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-
-                    }
-                });
-                builder.setNegativeButton("Khong", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                builder.setNeutralButton("Huy", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
+                    public void onClick(DialogInterface dialog, int position) {
+                        Toast.makeText(MainActivity.this, mangmonhoc[MainActivity.position], Toast.LENGTH_SHORT).show();
                     }
                 });
                 builder.show();
