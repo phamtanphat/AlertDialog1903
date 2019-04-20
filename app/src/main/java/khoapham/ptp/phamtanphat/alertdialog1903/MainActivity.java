@@ -29,11 +29,18 @@ public class MainActivity extends AppCompatActivity {
                 builder.setIcon(android.R.drawable.star_on);
                 //SingleChoice
                 final String[] mangmonhoc = {"Toan" ,"Ly" ,"Hoa","Anh van"};
-                builder.setSingleChoiceItems(mangmonhoc, 0, new DialogInterface.OnClickListener() {
+//                builder.setSingleChoiceItems(mangmonhoc, 0, new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int position) {
+//                        MainActivity.position = position;
+//
+//                    }
+//                });
+                boolean[] mangchecked = {false , false ,false,false };
+                builder.setMultiChoiceItems(mangmonhoc, mangchecked, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int position) {
-                        MainActivity.position = position;
-
+                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                        Toast.makeText(MainActivity.this, isChecked ? "Da check" : "Bo check", Toast.LENGTH_SHORT).show();
                     }
                 });
                 builder.setPositiveButton("Co", new DialogInterface.OnClickListener() {

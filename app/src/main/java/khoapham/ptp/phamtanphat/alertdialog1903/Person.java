@@ -3,6 +3,7 @@ package khoapham.ptp.phamtanphat.alertdialog1903;
 public class Person {
     private String ten;
     private String tuoi;
+    static String a = "10";
 
     private Person(Builder builder) {
         this.ten = builder.ten;
@@ -12,6 +13,7 @@ public class Person {
     static class Builder{
         public String ten;
         public String tuoi;
+
 
         public String getTen() {
             return ten;
